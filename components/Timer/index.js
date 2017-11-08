@@ -1,6 +1,6 @@
-import React from 'react';
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
-
+import React from "react";
+import {View, Text, StyleSheet, StatusBar, Alert} from "react-native";
+import Button from "../Button";
 
 class Timer extends React.Component {
     render() {
@@ -11,7 +11,8 @@ class Timer extends React.Component {
                     <Text style={styles.timer}>25:00</Text>
                 </View>
                 <View style={styles.lower}>
-                    <Text>Buttons Here</Text>
+                    <Button iconName="play-circle-o" onPress={() => Alert.alert("start Press work")}/>
+                    <Button iconName="stop-circle-o" onPress={() => Alert.alert("stop press work")}/>
                 </View>
             </View>
 
