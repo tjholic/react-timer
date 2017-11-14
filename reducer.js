@@ -38,22 +38,14 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case START_TIMER: {
-      console.log("start_timer!!!");
+    case START_TIMER:
       return applyStartTimer(state, action);
-    }
-    case RESTART_TIMER: {
-      console.log("restart_timer!!!");
+    case RESTART_TIMER:
       return applyRestartTimer(state, action);
-    }
-    case ADD_SECOND: {
-      console.log("add_second");
+    case ADD_SECOND:
       return applyAddSecond(state, action);
-    }
-    default: {
-      console.log("default");
+    default:
       return state;
-    }
   }
 }
 
@@ -76,7 +68,7 @@ function applyRestartTimer(state, action) {
 }
 
 function applyAddSecond(state, action) {
-  const { elapsedTime } = state;
+  const {elapsedTime} = state;
   if (elapsedTime < TIMER_DURATION) {
     return {
       ...state,
@@ -89,6 +81,7 @@ function applyAddSecond(state, action) {
     };
   }
 }
+
 
 // Exports
 
