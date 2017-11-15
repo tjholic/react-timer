@@ -5,6 +5,7 @@
 const START_TIMER = "START_TIMER";
 const RESTART_TIMER = "RESTART_TIMER";
 const ADD_SECOND = "ADD_SECOND";
+const CHANGE_DURATION = "CHANGE_DURATION";
 
 // Action Creators
 
@@ -26,9 +27,15 @@ function addSecond() {
   };
 }
 
-// Reducer
+function changeDuration(value) {
+  return {
+    type: CHANGE_DURATION,
+    paylod: value
+  };
+}
 
-const TIMER_DURATION = 1500;
+// Reducer
+const TIMER_DURATION = 100;
 
 const initialState = {
   isPlaying: false,
@@ -44,6 +51,8 @@ function reducer(state = initialState, action) {
       return applyRestartTimer(state, action);
     case ADD_SECOND:
       return applyAddSecond(state, action);
+    case CHANGE_DURATION:
+      return applyChangeDuration(state, action);
     default:
       return state;
   }
@@ -68,8 +77,8 @@ function applyRestartTimer(state, action) {
 }
 
 function applyAddSecond(state, action) {
-  const {elapsedTime} = state;
-  if (elapsedTime < TIMER_DURATION) {
+  const { elapsedTime, timerDuration } = state;
+  if (elapsedTime < timerDuration) {
     return {
       ...state,
       elapsedTime: elapsedTime + 1
@@ -82,13 +91,20 @@ function applyAddSecond(state, action) {
   }
 }
 
+function applyChangeDuration(state, action) {
+  const { receivedDuration } = action.paylod;
+  return {
+    ...state,
+    timerDuration: action.paylod
+  };
+}
 
 // Exports
-
 const actionCreators = {
   startTimer,
   restartTimer,
-  addSecond
+  addSecond,
+  changeDuration
 };
 
 export { actionCreators };
